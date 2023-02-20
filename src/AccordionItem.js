@@ -30,8 +30,6 @@ export default function AccordionItem(props) {
     titleRef.current.style.backgroundColor="rgb(100 116 139)";
   }
 
-  // console.log(prevExpanded)
-
   return (
     <div style={
       props.idx === props.lastIdx-1
@@ -45,13 +43,14 @@ export default function AccordionItem(props) {
       style={accordionTitle}
       aria-controls={`accordionContent_${props.idx+1}`}
       aria-expanded={isActive}
+      aria-disabled={props.type === 'disabled' ? true : false}
       onMouseOver={MouseOver} onMouseOut={MouseOut}
-      onClick={() => setIsActive(!isActive)}>
+      onClick={() => props.type ? null : setIsActive(!isActive)} >
       <div style={{fontWeight:'700'}}>{props.title}</div>
-      <div style={{cursor:'pointer', fontWeight:'bold'}}>{isActive ? '-' : '+'}</div>
+      <div style={{cursor:'pointer', fontWeight:'bold'}}>{isActive ? '-' : props.type ? '' : '+'}</div>
     </button>
     </div>
-    {isActive && <div id={`accordionContent_${props.idx+1}`} style={accordionContent}>{props.content}</div>}
+    {(isActive || props.type) && <div id={`accordionContent_${props.idx+1}`} style={accordionContent}>{props.content}</div>}
   </div>
   )
 }

@@ -25,7 +25,8 @@ export default function Accordion() {
       title: 'Section 3',
       content: `Sapiente expedita hic obcaecati, laboriosam similique omnis architecto ducimus magnam accusantium corrupti
       quam sint dolore pariatur perspiciatis, necessitatibus rem vel dignissimos
-      dolor ut sequi minus iste? Quas?`
+      dolor ut sequi minus iste? Quas?`,
+      type: 'disabled'
     }
   ];
 
@@ -39,8 +40,8 @@ export default function Accordion() {
   return (
     <>
       <div style={accordion}>
-      {accordionData.map(({ title, content }, idx) => (
-          <AccordionItem key={idx} title={title} content={content} idx={idx} lastIdx={accordionData.length}/>
+      {accordionData.map(({ title, content, type }, idx) => (
+          <AccordionItem key={idx} type={type} title={title} content={content} idx={idx} lastIdx={accordionData.length}/>
         ))}
       </div>
     </>
