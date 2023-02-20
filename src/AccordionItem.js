@@ -16,6 +16,7 @@ export default function AccordionItem(props) {
   const accordionContent = {
     padding: 20,
     paddingBottom: 40,
+    fontSize: 12,
     backgroundColor:'rgb(241 245 249)',
     textAlign:'left'
   }
@@ -37,7 +38,11 @@ export default function AccordionItem(props) {
       ? {borderTopLeftRadius:10, borderTopRightRadius:10, overflow:'hidden'}
       : null }>
     <div role='heading' aria-level={1}>
-    <button
+
+      <h4 style={{padding: 0, margin: 0}}>
+      <button
+      id={`accordion${props.idx+1}id`}
+      data-testid="toggle"
       ref={titleRef}
       style={accordionTitle}
       aria-controls={`accordionContent_${props.idx+1}`}
@@ -45,11 +50,13 @@ export default function AccordionItem(props) {
       aria-disabled={props.type === 'disabled' ? true : false}
       onMouseOver={MouseOver} onMouseOut={MouseOut}
       onClick={() => props.type ? null : setIsActive(!isActive)} >
-      <div style={{fontWeight:'700'}}>{props.title}</div>
-      <div style={{cursor:'pointer', fontWeight:'bold'}}>{isActive ? '-' : props.type ? '' : '+'}</div>
-    </button>
+      <span style={{fontWeight:'700'}}>{props.title}</span>
+      <span style={{cursor:'pointer', fontWeight:'bold'}}>{isActive ? '-' : props.type ? '' : '+'}</span>
+      </button>
+      </h4>
+
     </div>
-    {(isActive || props.type) && <div id={`accordionContent_${props.idx+1}`} style={accordionContent}>{props.content}</div>}
+    {(isActive || props.type) && <div id={`accordionContent_${props.idx+1}`} role="region" aria-labelledby={`accordion${props.idx+1}id`} style={accordionContent}>{props.content}</div>}
   </div>
   )
 }
