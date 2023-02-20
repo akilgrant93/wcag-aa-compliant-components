@@ -30,6 +30,8 @@ export default function AccordionItem(props) {
     titleRef.current.style.backgroundColor="rgb(100 116 139)";
   }
 
+  // console.log(prevExpanded)
+
   return (
     <div style={
       props.idx === props.lastIdx-1
@@ -37,11 +39,11 @@ export default function AccordionItem(props) {
       : props.idx === 0
       ? {borderTopLeftRadius:10, borderTopRightRadius:10, overflow:'hidden'}
       : null }>
-    <div role='heading' onFocus={() => setExpanded(prevExpanded => !prevExpanded)} aria-level={1}>
+    <div role='heading' aria-level={1}>
     <button
       ref={titleRef}
       style={accordionTitle}
-      aria-expanded={expanded}
+      aria-expanded={isActive}
       onMouseOver={MouseOver} onMouseOut={MouseOut}
       onClick={() => setIsActive(!isActive)}>
       <div style={{fontWeight:'700'}}>{props.title}</div>
