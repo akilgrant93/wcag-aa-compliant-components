@@ -43,6 +43,7 @@ export default function AccordionItem(props) {
     <button
       ref={titleRef}
       style={accordionTitle}
+      aria-controls={`accordionContent_${props.idx+1}`}
       aria-expanded={isActive}
       onMouseOver={MouseOver} onMouseOut={MouseOut}
       onClick={() => setIsActive(!isActive)}>
@@ -50,7 +51,7 @@ export default function AccordionItem(props) {
       <div style={{cursor:'pointer', fontWeight:'bold'}}>{isActive ? '-' : '+'}</div>
     </button>
     </div>
-    {isActive && <div style={accordionContent}>{props.content}</div>}
+    {isActive && <div id={`accordionContent_${props.idx+1}`} style={accordionContent}>{props.content}</div>}
   </div>
   )
 }
