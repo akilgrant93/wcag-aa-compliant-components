@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 
 export default function AccordionItem(props) {
   const [isActive, setIsActive] = useState(false);
-  const [expanded, setExpanded] = useState(false);
 
   const accordionTitle = {
     display:'flex',
