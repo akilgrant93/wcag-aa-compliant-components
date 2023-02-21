@@ -16,6 +16,11 @@ export default function Dialog() {
 
   }
 
+  const handleClose = () => {
+    setIsAddOpen(!isAddOpen)
+    setIsOpen(!isOpen)
+  }
+
   const dialog = {
     padding: 20,
     margin: '0 auto',
@@ -91,10 +96,9 @@ export default function Dialog() {
               If you wish to remove it, you can do so from <a href="#" onClick={() => console.log('clicked!')}>your profile.</a>
           </p>
           <div style={{display:'flex', justifyContent:'flex-end'}}>
-            <button type="button" id="dialog3_close_btn" onClick={() => setIsAddOpen(!isAddOpen)}>OK</button>
+            <button type="button" id="dialog3_close_btn" onClick={() => handleClose()}>OK</button>
           </div>
         </div> : null}
-
 
       </div> : null}
     </div>
