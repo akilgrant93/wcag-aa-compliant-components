@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import DialogActionButton from './DialogActionButton'
 import DialogFormItem from './DialogFormItem'
 
 export default function Dialog() {
@@ -28,6 +27,8 @@ export default function Dialog() {
     left: 0,
     right: 0,
     width: '80%',
+    borderRadius: 10,
+    boxShadow: '0 19px 38px rgb(0 0 0 / 12%), 0 15px 12px rgb(0 0 0 / 22%)'
   }
 
   const dialogData = [
@@ -59,8 +60,9 @@ export default function Dialog() {
     <div style={{width: '90%', margin: '0 auto', marginTop: 50, paddingTop: 50}}>
       <button type="button" onClick={() => setIsOpen(!isOpen)}>Add Delivery Address</button>
       {isOpen ? <div id="dialog_layer" style={dialog} className="dialogs">
-        <div role="dialog" id="dialog1" aria-labelledby="dialog1_label" aria-modal="true" className="hidden">
-          <h2 id="dialog1_label" className="dialog_label">Add Delivery Address</h2>
+        <div role="dialog" id="dialog1" aria-labelledby="dialog1_label"
+        aria-modal="true" className="hidden">
+          <h2 id="dialog1_label" style={{textAlign: 'center'}}>Add Delivery Address</h2>
             <div style={{display:'flex', flexDirection:'column', justifyContent:'center', paddingLeft: 20}}>
               {dialogData.map((item, idx) => {return (
                   <DialogFormItem key={idx} text={item.text} ariaDesc={item.ariaDesc} instructions={item.instructions} type='text' className={item.class}/>
@@ -68,12 +70,13 @@ export default function Dialog() {
             </div>
 
     <div style={{display:'flex', justifyContent:'flex-end'}}>
-      <DialogActionButton start={true} text={'Verify Address'} onClick={() => openDialog()}/>
-      {/* <button type="button" onClick={() => openDialog('dialog2', this, 'dialog2_para1')}>Verify Address</button> */}
-      <DialogActionButton text={'Add'} onClick={() => replaceDialog()}/>
-      {/* <button type="button" onClick={() => replaceDialog('dialog3', undefined, 'dialog3_close_btn')}>Add</button> */}
-      <DialogActionButton text={'Cancel'} onClick={setIsOpen} isOpen={isOpen}/>
-      {/* <button type="button" onClick={() => closeDialog(this)}>Cancel</button> */}
+
+      <button onClick={() => !isOpen}>{'Verify Address'}</button>
+
+      <button onClick={() => !isOpen} style={{marginLeft: 5}}>{'Add'}</button>
+
+      <button onClick={() => setIsOpen(!isOpen)}  style={{marginLeft: 5}}>{'Cancel'}</button>
+
     </div>
 
   </div>
