@@ -3,6 +3,7 @@ import DialogFormItem from './DialogFormItem'
 
 export default function Dialog() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isAddOpen, setIsAddOpen] = useState(false)
   const openDialog = () => {
 
   }
@@ -60,7 +61,8 @@ export default function Dialog() {
     <div style={{width: '90%', margin: '0 auto', marginTop: 50, paddingTop: 50}}>
       <button type="button" onClick={() => setIsOpen(!isOpen)}>Add Delivery Address</button>
       {isOpen ? <div id="dialog_layer" style={dialog} className="dialogs">
-        <div role="dialog" id="dialog1" aria-labelledby="dialog1_label"
+
+        {!isAddOpen ? <div role="dialog" id="dialog1" aria-labelledby="dialog1_label"
         aria-modal="true" className="hidden">
           <h2 id="dialog1_label" style={{textAlign: 'center'}}>Add Delivery Address</h2>
             <div style={{display:'flex', flexDirection:'column', justifyContent:'center', paddingLeft: 20}}>
@@ -73,13 +75,27 @@ export default function Dialog() {
 
       <button onClick={() => !isOpen}>{'Verify Address'}</button>
 
-      <button onClick={() => !isOpen} style={{marginLeft: 5}}>{'Add'}</button>
+      <button onClick={() => setIsAddOpen(!isAddOpen)} style={{marginLeft: 5}}>{'Add'}</button>
 
       <button onClick={() => setIsOpen(!isOpen)}  style={{marginLeft: 5}}>{'Cancel'}</button>
 
     </div>
 
-  </div>
+        </div> : null}
+
+        {isAddOpen ? <div id="dialog3" role="dialog" aria-labelledby="dialog3_label" aria-describedby="dialog3_desc" aria-modal="true" class="hidden">
+          <h2 id="dialog3_label" style={{textAlign:'center'}}>Address Added</h2>
+          <p id="dialog3_desc" style={{margin: '0 auto', paddingTop: 20, paddingBottom: 20, fontSize:14, width: '85%'}}>
+              The address you provided has been added to your list of delivery addresses.
+              It is ready for immediate use.
+              If you wish to remove it, you can do so from <a href="#" onClick={() => console.log('clicked!')}>your profile.</a>
+          </p>
+          <div style={{display:'flex', justifyContent:'flex-end'}}>
+            <button type="button" id="dialog3_close_btn" onClick={() => setIsAddOpen(!isAddOpen)}>OK</button>
+          </div>
+        </div> : null}
+
+
       </div> : null}
     </div>
   )
