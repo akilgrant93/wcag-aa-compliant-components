@@ -56,7 +56,7 @@ export default function DialogFormItem(props) {
       : <div className="dialog_form_item" style={dialogForm}>
       <label>
         <span className="label_text" style={labelText}>{props.text}:</span>
-        <input style={inputStyle} type="text" className={props.className} />
+        <input style={inputStyle} type="text" className={props.className} autoFocus={props.focus ? true : false}/>
       </label>
     </div>
 

@@ -99,7 +99,7 @@ export default function Dialog() {
           <h2 id="dialog1_label" style={{textAlign: 'center'}}>Add Delivery Address</h2>
             <div style={{display:'flex', flexDirection:'column', justifyContent:'center', paddingLeft: 20}}>
               {dialogData.map((item, idx) => {return (
-                  <DialogFormItem key={idx} text={item.text} ariaDesc={item.ariaDesc} instructions={item.instructions} type='text' className={item.class}/>
+                  <DialogFormItem key={idx} text={item.text} ariaDesc={item.ariaDesc} instructions={item.instructions} type='text' className={item.class} focus={idx === 0 ? true : false}/>
                 )})}
             </div>
 
